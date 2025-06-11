@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'yin haqida - To'g'ri Gap Top!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1e88e5;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffeb3b;
+        }
+        
+        .game-about-section {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .game-about-section h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1e88e5;
+        }
+        
+        .game-rules {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .game-rules h2 {
+            color: #1e88e5;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 0.5rem;
+        }
+        
+        .game-rules ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .game-rules li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .level-info {
+            margin-top: 2rem;
+        }
+        
+        .level-info h3 {
+            color: #1e88e5;
+            margin-bottom: 1rem;
+        }
+        
+        .level-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        
+        .level-table th, .level-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .level-table th {
+            background-color: #1e88e5;
+            color: white;
+        }
+        
+        .level-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .start-game-btn {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #388e3c;
+        }
+        
+        footer {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .game-rules {
+                padding: 1rem;
+            }
+            
+            .level-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">To'g'ri Gap Top!</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Bosh sahifa</a></li>
+                    <li><a href="about.html">Biz haqimizda</a></li>
+                    <li><a href="game_about.html">O'yin haqida</a></li>
+                    <li><a href="contact.html">Kontaktlar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="game-about-section">
+        <div class="container">
+            <h1>O'yin haqida</h1>
+            <div class="game-rules">
+                <h2>O'yin qoidalari</h2>
+                <ol>
+                    <li>O'yin 30 ta bosqichdan iborat bo'lib, har bir bosqichda sizga aralashtirilgan so'zlar beriladi.</li>
+                    <li>Berilgan so'zlarni to'g'ri tartibda joylashtirib, mazmunli va grammatik jihatdan to'g'ri gap tuzishingiz kerak.</li>
+                    <li>So'zlarni joylashtirish uchun ularni boshqarib, kerakli joyga tortib qo'yishingiz mumkin.</li>
+                    <li>"Tekshirish" tugmasini bosganingizda, sizning javobingiz to'g'riligi tekshiriladi.</li>
+                    <li>Agar javob to'g'ri bo'lsa, keyingi bosqichga o'tishingiz mumkin bo'ladi.</li>
+                    <li>Har bir bosqich uchun maksimal 3 yulduz to'plash mumkin. Birinchi urinishda to'g'ri topsangiz - 3 yulduz, ikkinchi urinishda - 2 yulduz, uchinchi va undan ortiq urinishlarda - 1 yulduz.</li>
+                </ol>
+                
+                <div class="level-info">
+                    <h3>Bosqichlar tuzilmasi</h3>
+                    <table class="level-table">
+                        <thead>
+                            <tr>
+                                <th>Bosqich</th>
+                                <th>Nomi</th>
+                                <th>Gap turi</th>
+                                <th>Xususiyatlari</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1-5</td>
+                                <td>Boshlovchi</td>
+                                <td>Oddiy sodda gaplar</td>
+                                <td>3-4 so'zli, masalan: "Mening ismim Ali."</td>
+                            </tr>
+                            <tr>
+                                <td>6-10</td>
+                                <td>Bilimdon</td>
+                                <td>Sifatli gaplar</td>
+                                <td>Sifat qo'shilgan, 4-5 so'zli: "Katta mushuk uyda uxlaydi."</td>
+                            </tr>
+                            <tr>
+                                <td>11-15</td>
+                                <td>Tarjimon</td>
+                                <td>So'roq gaplar</td>
+                                <td>Kim?, Qayerda?, Nima? kabi: "Kim derazada turibdi?"</td>
+                            </tr>
+                            <tr>
+                                <td>16-20</td>
+                                <td>Harakatli</td>
+                                <td>Fe'l shakllari murakkab</td>
+                                <td>"Ali do'stlari bilan futbol o'ynadi."</td>
+                            </tr>
+                            <tr>
+                                <td>21-30</td>
+                                <td>Qiyinchali</td>
+                                <td>Bog'lovchi bilan murakkab gaplar</td>
+                                <td>"Ona osh pishirdi va meni chaqirdi."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="start-game-btn">
+                    <a href="game.html" class="btn"><i class="fas fa-play"></i> O'yinni boshlash</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 To'g'ri Gap Top! O'yini. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+</body>
+</html>
