@@ -366,14 +366,14 @@
             },
             {
                 id: 2,
-                name: "Bilimdon",
+                name: "Boshlovchi",
                 sentence: "Kitob javonda turibdi",
                 words: ["turibdi", "Kitob", "javonda"],
                 difficulty: "easy",
                 attempts: 0,
                 completed: false,
                 stars: 0
-            }
+            },
             {
                 id: 3,
                 name: "Boshlovchi",
@@ -787,13 +787,14 @@
         }
         
         function drop(e) {
+            
             e.preventDefault();
             this.classList.remove('drag-over');
-            
+
             const word = e.dataTransfer.getData('text/plain');
             const draggedElement = document.querySelector('.dragging');
-            
             if (draggedElement) {
+                sentenceZone.appendChild(draggedElement);
                 // Agar so'z drop zonadan tashqariga tushirilgan bo'lsa
                 if (this === sentenceZone) {
                     // So'zni drop zonaga qo'shish
