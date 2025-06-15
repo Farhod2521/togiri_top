@@ -270,6 +270,13 @@
             background-color: #1565c0;
         }
         
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: #1e88e5;
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -342,7 +349,9 @@
             
             <div class="level-select" id="level-select">
                 <h2>Bosqichni tanlang</h2>
-                <div class="levels-container" id="levels-container"></div>
+                <div class="levels-container" id="levels-container">
+                    <div class="loading">Yuklanmoqda...</div>
+                </div>
                 
                 <div style="text-align: center; margin-top: 2rem;">
                     <a href="index.html" class="home-btn"><i class="fas fa-home"></i> Bosh sahifa</a>
@@ -352,662 +361,331 @@
     </section>
     
     <script>
-        // O'yin ma'lumotlari - 30 ta bosqich
-        const levels = [
-            {
-                id: 1,
-                name: "Boshlovchi",
-                sentence: "Mening ismim Xadicha",
-                words: ["ismim", "Xadicha", "Mening"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 2,
-                name: "Boshlovchi",
-                sentence: "Kitob javonda turibdi",
-                words: ["turibdi", "Kitob", "javonda"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 3,
-                name: "Boshlovchi",
-                sentence: "Uyda mushuk bor",
-                words: ["mushuk", "bor", "Uyda"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 4,
-                name: "Boshlovchi",
-                sentence: "Bu mening uyim",
-                words: ["mening", "uyim", "Bu"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 5,
-                name: "Boshlovchi",
-                sentence: "Men maktabga boraman",
-                words: ["boraman", "maktabga", "Men"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 6,
-                name: "Bilimdon",
-                sentence: "Katta mushuk uyda uxlaydi",
-                words: ["uxlaydi", "Katta", "uyda", "mushuk"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 7,
-                name: "Bilimdon",
-                sentence: "Maktab katta binoda joylashgan",
-                words: ["binoda", "katta", "joylashgan", "Maktab"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 8,
-                name: "Bilimdon",
-                sentence: "Yosh bola maydonda o'ynaydi",
-                words: ["o'ynaydi", "Yosh", "maydonda", "bola"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 9,
-                name: "Bilimdon",
-                sentence: "Qizil gul stolda turibdi",
-                words: ["turibdi", "Qizil", "stolda", "gul"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 10,
-                name: "Bilimdon",
-                sentence: "Yaxshi kitobni tez o'qidim",
-                words: ["o'qidim", "Yaxshi", "tez", "kitobni"],
-                difficulty: "easy",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 11,
-                name: "Tarjimon",
-                sentence: "Kim derazada turibdi ?",
-                words: ["Kim", "turibdi", "derazada", "?"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 12,
-                name: "Tarjimon",
-                sentence: "Qachon maktab boshlanadi?",
-                words: ["Qachon", "maktab", "boshlanadi", "?"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 13,
-                name: "Tarjimon",
-                sentence: "Nima uchun kechikdingiz?",
-                words: ["Nima", "uchun", "kechikdingiz", "?"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 14,
-                name: "Tarjimon",
-                sentence: "Qayerda o'tirgan edingiz?",
-                words: ["Qayerda", "o'tirgan", "edingiz", "?"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 15,
-                name: "Tarjimon",
-                sentence: "Nega ertaga kelmadingiz?",
-                words: ["Nega", "ertaga", "kelmadingiz", "?"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 16,
-                name: "Harakatli",
-                sentence: "Ona bozorga borayotgan edi",
-                words: ["borayotgan", "edi", "Ona", "bozorga"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 17,
-                name: "Harakatli",
-                sentence: "Bolalar hovlida o'ynab yotishdi",
-                words: ["o'ynab", "yotishdi", "Bolalar", "hovlida"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 18,
-                name: "Harakatli",
-                sentence: "Men kitob o'qib bo'ldim",
-                words: ["o'qib", "bo'ldim", "Men", "kitob"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 19,
-                name: "Harakatli",
-                sentence: "Ular kino ko'rishga ketishdi",
-                words: ["ko'rishga", "ketishdi", "Ular", "kino"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 20,
-                name: "Harakatli",
-                sentence: "Biz ertaga kelishni aytdik",
-                words: ["kelishni", "aytdik", "Biz", "ertaga"],
-                difficulty: "medium",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 21,
-                name: "Qiyinchali",
-                sentence: "Men kitob o'qiyapman va do'stim daftar yozmoqda",
-                words: ["do'stim", "kitob", "o'qiyapman", "daftar", "va", "yozmoqda", "Men"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 22,
-                name: "Qiyinchali",
-                sentence: "Ona osh pishirdi va meni chaqirdi",
-                words: ["pishirdi", "chaqirdi", "Ona", "osh", "va", "meni"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 23,
-                name: "Qiyinchali",
-                sentence: "Agar yomg'ir yog'masa, biz parkga boramiz",
-                words: ["yog'masa", "boramiz", "Agar", "yomg'ir", "biz", "parkga"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 24,
-                name: "Qiyinchali",
-                sentence: "U uyga keldi, lekin hech kim uyda yo'q edi",
-                words: ["keldi", "yo'q", "U", "uyga", "lekin", "hech", "kim", "uyda", "edi"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 25,
-                name: "Qiyinchali",
-                sentence: "Men futbol o'ynashni yaxshi ko'raman, chunki u qiziqarli",
-                words: ["o'ynashni", "ko'raman", "Men", "futbol", "yaxshi", "chunki", "u", "qiziqarli"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 26,
-                name: "Qiyinchali",
-                sentence: "Bugun havo issiq bo'lsa-da, biz suzishga boramiz",
-                words: ["bo'lsa-da", "boramiz", "Bugun", "havo", "issiq", "biz", "suzishga"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 27,
-                name: "Qiyinchali",
-                sentence: "Kitobni o'qib bo'lgach, uni javobga qaytarish kerak",
-                words: ["o'qib", "qaytarish", "Kitobni", "bo'lgach", "uni", "javobga", "kerak"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 28,
-                name: "Qiyinchali",
-                sentence: "Agar vaqtim bo'lsa, ertaga siz bilan ko'rishamiz",
-                words: ["bo'lsa", "ko'rishamiz", "Agar", "vaqtim", "ertaga", "siz", "bilan"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 29,
-                name: "Qiyinchali",
-                sentence: "Uy ishini tugatganimdan so'ng, televizor ko'raman",
-                words: ["tugatganimdan", "ko'raman", "Uy", "ishini", "so'ng", "televizor"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            },
-            {
-                id: 30,
-                name: "Qiyinchali",
-                sentence: "Choynakdan choy quyib, mehmonlarga taklif qildim",
-                words: ["quyib", "qildim", "Choynakdan", "choy", "mehmonlarga", "taklif"],
-                difficulty: "hard",
-                attempts: 0,
-                completed: false,
-                stars: 0
-            }
-        ];
-        
-        // O'yin holati
-        let gameState = {
-            currentLevel: 1,
-            totalScore: 0,
-            levelsUnlocked: 1,
-            levelsCompleted: 0
-        };
-        
-        // DOM elementlari
-        const gameScreen = document.getElementById('game-screen');
-        const levelSelect = document.getElementById('level-select');
-        const currentLevelDisplay = document.getElementById('current-level');
-        const levelStars = document.getElementById('level-stars');
-        const totalScoreDisplay = document.getElementById('total-score');
-        const sentenceZone = document.getElementById('sentence-zone');
-        const wordsContainer = document.getElementById('words-container');
-        const checkBtn = document.getElementById('check-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const resultMessage = document.getElementById('result-message');
-        const levelsContainer = document.getElementById('levels-container');
-        const backToLevelsBtn = document.getElementById('back-to-levels');
-        
-        // LocalStoragedan ma'lumotlarni yuklash
-        function loadGameState() {
-            const savedGameState = localStorage.getItem('togriGapTopGameState');
-            if (savedGameState) {
-                const parsedState = JSON.parse(savedGameState);
-                gameState = parsedState.gameState;
-                
-                // Level ma'lumotlarini yangilash
-                for (let i = 0; i < levels.length; i++) {
-                    if (parsedState.levels[i]) {
-                        levels[i] = parsedState.levels[i];
-                    }
-                }
-                
-                updateUI();
-            }
-        }
-        
-        // LocalStoragega ma'lumotlarni saqlash
-        function saveGameState() {
-            const gameData = {
-                gameState: gameState,
-                levels: levels
-            };
-            localStorage.setItem('togriGapTopGameState', JSON.stringify(gameData));
-        }
-        
-        // Bosqichni yuklash
-        function loadLevel(levelId) {
-            const level = levels.find(l => l.id === levelId);
-            if (!level) return;
-            
-            gameState.currentLevel = levelId;
-            currentLevelDisplay.textContent = levelId;
-            
-            // Yulduzlarni yangilash
-            updateStars(level.stars);
-            
-            // So'zlar zonasi va so'zlar konteynerini tozalash
-            sentenceZone.innerHTML = '';
-            wordsContainer.innerHTML = '';
-            
-            // So'zlarni aralashtirish
-            const shuffledWords = [...level.words].sort(() => Math.random() - 0.5);
-            
-            // So'zlarni yaratish
-            shuffledWords.forEach(word => {
-                const wordElement = document.createElement('div');
-                wordElement.className = 'word';
-                wordElement.textContent = word;
-                wordElement.draggable = true;
-                
-                // Drag and drop eventlarini qo'shish
-                wordElement.addEventListener('dragstart', dragStart);
-                wordElement.addEventListener('dragend', dragEnd);
-                
-                wordsContainer.appendChild(wordElement);
-            });
-            
-            // Drop zonasi uchun eventlar
-            sentenceZone.addEventListener('dragover', dragOver);
-            sentenceZone.addEventListener('dragenter', dragEnter);
-            sentenceZone.addEventListener('dragleave', dragLeave);
-            sentenceZone.addEventListener('drop', drop);
-            
-            // O'yin ekranini ko'rsatish
-            gameScreen.style.display = 'block';
-            levelSelect.style.display = 'none';
-            
-            // Urinishlar sonini nolga tushirish
-            level.attempts = 0;
-            
-            // Natija xabarini tozalash
-            resultMessage.textContent = '';
-            resultMessage.className = 'result-message';
-            
-            // UI ni yangilash
-            updateUI();
-            
-            // O'yin holatini saqlash
-            saveGameState();
-        }
-        
-        // Drag and drop funksiyalari
-        function dragStart(e) {
-            e.target.classList.add('dragging');
-            e.dataTransfer.setData('text/plain', e.target.textContent);
-            e.dataTransfer.effectAllowed = 'move';
-        }
-        
-        function dragEnd(e) {
-            e.target.classList.remove('dragging');
-        }
-        
-        function dragOver(e) {
-            e.preventDefault();
-            e.dataTransfer.dropEffect = 'move';
-        }
-        
-        function dragEnter(e) {
-            e.preventDefault();
-            this.classList.add('drag-over');
-        }
-        
-        function dragLeave() {
-            this.classList.remove('drag-over');
-        }
-        
-        function drop(e) {
-            
-            e.preventDefault();
-            this.classList.remove('drag-over');
+// O'yin holati
+let gameState = {
+    currentLevel: 1,
+    totalScore: 0,
+    levelsUnlocked: 1,
+    levelsCompleted: 0
+};
 
-            const word = e.dataTransfer.getData('text/plain');
-            const draggedElement = document.querySelector('.dragging');
-            if (draggedElement) {
-                sentenceZone.appendChild(draggedElement);
-                // Agar so'z drop zonadan tashqariga tushirilgan bo'lsa
-                if (this === sentenceZone) {
-                    // So'zni drop zonaga qo'shish
-                    const newWord = document.createElement('div');
-                    newWord.className = 'word';
-                    newWord.textContent = word;
-                    newWord.draggable = true;
-                    newWord.addEventListener('dragstart', dragStart);
-                    newWord.addEventListener('dragend', dragEnd);
-                    
-                    // Pozitsiyani aniqlash
-                    const dropX = e.clientX;
-                    const dropY = e.clientY;
-                    
-                    // Eng yaqin elementni topish
-                    let closestElement = null;
-                    let closestDistance = Infinity;
-                    
-                    Array.from(this.children).forEach(child => {
-                        const rect = child.getBoundingClientRect();
-                        const childX = rect.left + rect.width / 2;
-                        const childY = rect.top + rect.height / 2;
-                        
-                        const distance = Math.sqrt(
-                            Math.pow(dropX - childX, 2) + Math.pow(dropY - childY, 2)
-                        );
-                        
-                        if (distance < closestDistance) {
-                            closestDistance = distance;
-                            closestElement = child;
-                        }
-                    });
-                    
-                    // So'zni joylashtirish
-                    if (closestElement) {
-                        this.insertBefore(newWord, closestElement);
-                    } else {
-                        this.appendChild(newWord);
-                    }
-                    
-                    // Asl elementni o'chirish
-                    draggedElement.remove();
-                }
+let levels = [];
+
+// DOM elementlari
+const gameScreen = document.getElementById('game-screen');
+const levelSelect = document.getElementById('level-select');
+const currentLevelDisplay = document.getElementById('current-level');
+const levelStars = document.getElementById('level-stars');
+const totalScoreDisplay = document.getElementById('total-score');
+const sentenceZone = document.getElementById('sentence-zone');
+const wordsContainer = document.getElementById('words-container');
+const checkBtn = document.getElementById('check-btn');
+const resetBtn = document.getElementById('reset-btn');
+const resultMessage = document.getElementById('result-message');
+const levelsContainer = document.getElementById('levels-container');
+const backToLevelsBtn = document.getElementById('back-to-levels');
+
+// API dan bosqichlarni yuklash
+async function fetchLevels() {
+    try {
+        const response = await fetch('https://maktabsavodxonlik.pythonanywhere.com/api/levels/');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        
+        levels = data.map(level => ({
+            ...level,
+            attempts: 0,
+            completed: false,
+            stars: 0
+        }));
+        
+        loadGameState();
+        showLevelSelect();
+    } catch (error) {
+        console.error('Error fetching levels:', error);
+        levelsContainer.innerHTML = '<div class="loading">Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.</div>';
+    }
+}
+
+// LocalStoragedan ma'lumotlarni yuklash
+function loadGameState() {
+    const savedGameState = localStorage.getItem('togriGapTopGameState');
+    if (savedGameState) {
+        const parsedState = JSON.parse(savedGameState);
+        gameState = parsedState.gameState;
+        
+        for (let i = 0; i < levels.length; i++) {
+            if (parsedState.levels && parsedState.levels[i]) {
+                levels[i] = {
+                    ...levels[i],
+                    attempts: parsedState.levels[i].attempts || 0,
+                    completed: parsedState.levels[i].completed || false,
+                    stars: parsedState.levels[i].stars || 0
+                };
             }
         }
+        updateUI();
+    }
+}
+
+// LocalStoragega ma'lumotlarni saqlash
+function saveGameState() {
+    const gameData = {
+        gameState: gameState,
+        levels: levels.map(level => ({
+            id: level.id,
+            attempts: level.attempts,
+            completed: level.completed,
+            stars: level.stars
+        }))
+    };
+    localStorage.setItem('togriGapTopGameState', JSON.stringify(gameData));
+}
+
+// Bosqichni yuklash
+function loadLevel(levelId) {
+    const level = levels.find(l => l.id === levelId);
+    if (!level) return;
+    
+    gameState.currentLevel = levelId;
+    currentLevelDisplay.textContent = levelId;
+    updateStars(level.stars);
+    
+    sentenceZone.innerHTML = '';
+    wordsContainer.innerHTML = '';
+    
+    // So'zlarni aralashtirish
+    const shuffledWords = [...level.words].sort(() => Math.random() - 0.5);
+    
+    // So'zlarni yaratish
+    shuffledWords.forEach(word => {
+        const wordElement = document.createElement('div');
+        wordElement.className = 'word';
+        wordElement.textContent = word;
+        wordElement.draggable = true;
+        wordElement.dataset.word = word; // So'zni saqlash uchun data atribut
         
-        // Tekshirish tugmasi
-        checkBtn.addEventListener('click', () => {
-            const level = levels.find(l => l.id === gameState.currentLevel);
-            if (!level) return;
+        wordElement.addEventListener('dragstart', dragStart);
+        wordElement.addEventListener('dragend', dragEnd);
+        
+        wordsContainer.appendChild(wordElement);
+    });
+    
+    // Drop zonasi uchun eventlar
+    sentenceZone.addEventListener('dragover', dragOver);
+    sentenceZone.addEventListener('dragenter', dragEnter);
+    sentenceZone.addEventListener('dragleave', dragLeave);
+    sentenceZone.addEventListener('drop', drop);
+    
+    gameScreen.style.display = 'block';
+    levelSelect.style.display = 'none';
+    level.attempts = 0;
+    resultMessage.textContent = '';
+    resultMessage.className = 'result-message';
+    updateUI();
+    saveGameState();
+}
+
+// Drag and drop funksiyalari
+let draggedWord = null;
+
+function dragStart(e) {
+    draggedWord = e.target;
+    e.target.classList.add('dragging');
+    setTimeout(() => e.target.classList.add('invisible'), 0);
+}
+
+function dragEnd(e) {
+    e.target.classList.remove('dragging', 'invisible');
+    draggedWord = null;
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function dragEnter(e) {
+    e.preventDefault();
+    this.classList.add('drag-over');
+}
+
+function dragLeave() {
+    this.classList.remove('drag-over');
+}
+
+function drop(e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+    
+    if (draggedWord && this === sentenceZone) {
+        // So'zni joylashtirish
+        const dropX = e.clientX;
+        let closestChild = null;
+        let closestDistance = Infinity;
+        
+        // Eng yaqin so'zni topish
+        Array.from(this.children).forEach(child => {
+            const rect = child.getBoundingClientRect();
+            const childX = rect.left + rect.width / 2;
+            const distance = Math.abs(dropX - childX);
             
-            // Urinishlar sonini oshirish
-            level.attempts++;
-            
-            // Foydalanuvchi yaratgan gapni olish
-            const userSentence = Array.from(sentenceZone.children)
-                .map(word => word.textContent)
-                .join(' ');
-            
-            // To'g'ri gap bilan solishtirish
-            if (userSentence === level.sentence) {
-                // Yulduzlarni hisoblash
-                let stars = 0;
-                if (level.attempts === 1) {
-                    stars = 3;
-                } else if (level.attempts <= 3) {
-                    stars = 2;
-                } else {
-                    stars = 1;
-                }
-                
-                // Agar oldingi yulduzlar soni yangisidan kam bo'lsa, yangilash
-                if (stars > level.stars) {
-                    level.stars = stars;
-                    gameState.totalScore += (stars * 10);
-                }
-                
-                // Agar level avval tugallanmagan bo'lsa, ball qo'shish
-                if (!level.completed) {
-                    level.completed = true;
-                    gameState.levelsCompleted++;
-                    
-                    // Keyingi levelni ochish
-                    if (gameState.currentLevel < levels.length) {
-                        gameState.levelsUnlocked = Math.max(gameState.levelsUnlocked, gameState.currentLevel + 1);
-                    }
-                }
-                
-                // Xabar ko'rsatish
-                resultMessage.textContent = "✅ To'g'ri! Ajoyib ish!";
-                resultMessage.className = "result-message correct";
-                
-                // UI ni yangilash
-                updateUI();
-                
-                // O'yin holatini saqlash
-                saveGameState();
-                
-                // 2 soniyadan keyin keyingi bosqichga o'tish
-                setTimeout(() => {
-                    if (gameState.currentLevel < levels.length) {
-                        loadLevel(gameState.currentLevel + 1);
-                    } else {
-                        // Agar barcha bosqichlar tugagan bo'lsa
-                        resultMessage.textContent = "🎉 Tabriklaymiz! Siz barcha bosqichlarni tugatdingiz!";
-                        showLevelSelect();
-                    }
-                }, 2000);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestChild = child;
+            }
+        });
+        
+        // So'zni joylashtirish
+        if (closestChild) {
+            if (dropX > closestChild.getBoundingClientRect().left + closestChild.getBoundingClientRect().width / 2) {
+                this.insertBefore(draggedWord, closestChild.nextSibling);
             } else {
-                // Noto'g'ri javob
-                resultMessage.textContent = "❌ Noto'g'ri. Qayta urinib ko'ring!";
-                resultMessage.className = "result-message incorrect";
-                
-                // O'yin holatini saqlash
-                saveGameState();
+                this.insertBefore(draggedWord, closestChild);
             }
-        });
-        
-        // Qayta boshlash tugmasi
-        resetBtn.addEventListener('click', () => {
-            loadLevel(gameState.currentLevel);
-        });
-        
-        // Yulduzlarni yangilash
-        function updateStars(count) {
-            const stars = levelStars.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                if (index < count) {
-                    star.classList.add('fas');
-                    star.classList.remove('far');
-                } else {
-                    star.classList.add('far');
-                    star.classList.remove('fas');
-                }
-            });
+        } else {
+            this.appendChild(draggedWord);
+        }
+    }
+}
+
+// Tekshirish tugmasi
+checkBtn.addEventListener('click', () => {
+    const level = levels.find(l => l.id === gameState.currentLevel);
+    if (!level) return;
+    
+    level.attempts++;
+    
+    // Foydalanuvchi yaratgan gapni olish
+    const userSentence = Array.from(sentenceZone.children)
+        .map(word => word.textContent)
+        .join(' ');
+    
+    // To'g'ri gap bilan solishtirish
+    if (userSentence === level.sentence) {
+        let stars = 0;
+        if (level.attempts === 1) {
+            stars = 3;
+        } else if (level.attempts <= 3) {
+            stars = 2;
+        } else {
+            stars = 1;
         }
         
-        // UI ni yangilash
-        function updateUI() {
-            totalScoreDisplay.textContent = gameState.totalScore;
-            
-            // Bosqich tugmalarini yangilash
-            levelsContainer.innerHTML = '';
-            levels.forEach(level => {
-                const levelBtn = document.createElement('button');
-                levelBtn.className = 'level-btn';
-                levelBtn.textContent = level.id;
-                
-                // Agar level ochiq bo'lsa
-                if (level.id <= gameState.levelsUnlocked) {
-                    levelBtn.onclick = () => loadLevel(level.id);
-                    
-                    // Agar level tugallangan bo'lsa
-                    if (level.completed) {
-                        levelBtn.classList.add('completed');
-                        
-                        // Yulduzlarni ko'rsatish
-                        const starsDiv = document.createElement('div');
-                        starsDiv.className = 'level-stars';
-                        for (let i = 0; i < level.stars; i++) {
-                            const star = document.createElement('i');
-                            star.className = 'fas fa-star';
-                            starsDiv.appendChild(star);
-                        }
-                        levelBtn.appendChild(starsDiv);
-                    }
-                } else {
-                    // Agar level yopiq bo'lsa
-                    levelBtn.classList.add('locked');
-                    const lockIcon = document.createElement('i');
-                    lockIcon.className = 'fas fa-lock';
-                    levelBtn.innerHTML = '';
-                    levelBtn.appendChild(lockIcon);
-                }
-                
-                // Agar bu hozirgi level bo'lsa
-                if (level.id === gameState.currentLevel) {
-                    levelBtn.style.border = '3px solid #ffeb3b';
-                }
-                
-                levelsContainer.appendChild(levelBtn);
-            });
+        if (stars > level.stars) {
+            level.stars = stars;
+            gameState.totalScore += (stars * 10);
         }
         
-        // Bosqich tanlash ekranini ko'rsatish
-        function showLevelSelect() {
-            gameScreen.style.display = 'none';
-            levelSelect.style.display = 'block';
-            updateUI();
-        }
-        
-        // Bosqich tanlash tugmasi
-        backToLevelsBtn.addEventListener('click', showLevelSelect);
-        
-        // Dastur ishga tushganda
-        document.addEventListener('DOMContentLoaded', () => {
-            // O'yin holatini yuklash
-            loadGameState();
-            
-            // Bosqich tanlash ekranini ko'rsatish
-            showLevelSelect();
-            
-            // Agar o'yin davom etayotgan bo'lsa
-            if (gameState.currentLevel > 0) {
-                // Bosqich tanlash ekranida hozirgi levelni belgilash
-                setTimeout(() => {
-                    const currentLevelBtn = document.querySelector(`.level-btn:nth-child(${gameState.currentLevel})`);
-                    if (currentLevelBtn) {
-                        currentLevelBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }, 100);
+        if (!level.completed) {
+            level.completed = true;
+            gameState.levelsCompleted++;
+            if (gameState.currentLevel < levels.length) {
+                gameState.levelsUnlocked = Math.max(gameState.levelsUnlocked, gameState.currentLevel + 1);
             }
-        });
+        }
+        
+        resultMessage.textContent = "✅ To'g'ri! Ajoyib ish!";
+        resultMessage.className = "result-message correct";
+        
+        updateUI();
+        saveGameState();
+        
+        setTimeout(() => {
+            if (gameState.currentLevel < levels.length) {
+                loadLevel(gameState.currentLevel + 1);
+            } else {
+                resultMessage.textContent = "🎉 Tabriklaymiz! Siz barcha bosqichlarni tugatdingiz!";
+                showLevelSelect();
+            }
+        }, 2000);
+    } else {
+        resultMessage.textContent = "❌ Noto'g'ri. Qayta urinib ko'ring!";
+        resultMessage.className = "result-message incorrect";
+        saveGameState();
+    }
+});
+
+// Qayta boshlash tugmasi
+resetBtn.addEventListener('click', () => {
+    loadLevel(gameState.currentLevel);
+});
+
+// Yulduzlarni yangilash
+function updateStars(count) {
+    const stars = levelStars.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+        if (index < count) {
+            star.classList.add('fas');
+            star.classList.remove('far');
+        } else {
+            star.classList.add('far');
+            star.classList.remove('fas');
+        }
+    });
+}
+
+// UI ni yangilash
+function updateUI() {
+    totalScoreDisplay.textContent = gameState.totalScore;
+    levelsContainer.innerHTML = '';
+    
+    levels.forEach(level => {
+        const levelBtn = document.createElement('button');
+        levelBtn.className = 'level-btn';
+        levelBtn.textContent = level.id;
+        
+        if (level.id <= gameState.levelsUnlocked) {
+            levelBtn.onclick = () => loadLevel(level.id);
+            
+            if (level.completed) {
+                levelBtn.classList.add('completed');
+                const starsDiv = document.createElement('div');
+                starsDiv.className = 'level-stars';
+                for (let i = 0; i < level.stars; i++) {
+                    const star = document.createElement('i');
+                    star.className = 'fas fa-star';
+                    starsDiv.appendChild(star);
+                }
+                levelBtn.appendChild(starsDiv);
+            }
+        } else {
+            levelBtn.classList.add('locked');
+            const lockIcon = document.createElement('i');
+            lockIcon.className = 'fas fa-lock';
+            levelBtn.innerHTML = '';
+            levelBtn.appendChild(lockIcon);
+        }
+        
+        if (level.id === gameState.currentLevel) {
+            levelBtn.style.border = '3px solid #ffeb3b';
+        }
+        
+        levelsContainer.appendChild(levelBtn);
+    });
+}
+
+// Bosqich tanlash ekranini ko'rsatish
+function showLevelSelect() {
+    gameScreen.style.display = 'none';
+    levelSelect.style.display = 'block';
+    updateUI();
+}
+
+// Bosqich tanlash tugmasi
+backToLevelsBtn.addEventListener('click', showLevelSelect);
+
+// Dastur ishga tushganda
+document.addEventListener('DOMContentLoaded', () => {
+    fetchLevels();
+    if (gameState.currentLevel > 0) {
+        setTimeout(() => {
+            const currentLevelBtn = document.querySelector(`.level-btn:nth-child(${gameState.currentLevel})`);
+            if (currentLevelBtn) {
+                currentLevelBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }
+});
     </script>
 </body>
 </html>
